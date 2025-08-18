@@ -38,6 +38,9 @@ class CliChat(Chat):
         doc_ids = await self.list_docs_ids()
         mentioned_docs: list[Tuple[str, str]] = []
 
+        if doc_ids is None:
+            doc_ids = []
+
         for doc_id in doc_ids:
             if doc_id in mentions:
                 content = await self.get_doc_content(doc_id)
